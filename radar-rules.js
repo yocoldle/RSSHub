@@ -1,5 +1,5 @@
 ({
-    '8world.com': { _name: '8视界', '.': [{ title: '分类', docs: 'https://docs.rsshub.app/new-media.html#_8-shi-jie-fen-lei', source: ['/:category', '/'], target: '/8world/:category?' }] },
+    // '8world.com': { _name: '8视界', '.': [{ title: '分类', docs: 'https://docs.rsshub.app/new-media.html#_8-shi-jie-fen-lei', source: ['/:category', '/'], target: '/8world/:category?' }] },
     'aamacau.com': { _name: '論盡媒體 AllAboutMacau Media', '.': [{ title: '话题', docs: 'https://docs.rsshub.app/new-media.html#lun-jin-mei-ti-allaboutmacau-media-hua-ti', source: ['/'], target: '/:category?/:id?' }] },
     'eprice.com.tw': { _name: 'ePrice', '.': [{ title: 'ePrice 比價王', docs: 'https://docs.rsshub.app/new-media.html#eprice', source: ['/'], target: '/:region?' }] },
     'eprice.com.hk': { _name: 'ePrice', '.': [{ title: 'ePrice 香港', docs: 'https://docs.rsshub.app/new-media.html#eprice', source: ['/'], target: '/:region?' }] },
@@ -13,27 +13,6 @@
     },
     'https://www.icac.org.hk': { _name: '廉政公署', '.': [{ title: '新闻公布', docs: 'https://docs.rsshub.app/government.html#xiang-gang-lian-zheng-gong-shu', source: ['/:lang/press/index.html'], target: '/icac/news/:lang' }] },
     'trow.cc': { _name: 'The Ring of Wonder', '.': [{ title: '首页更新', docs: 'https://docs.rsshub.app/bbs.html#the-ring-of-wonder', source: ['/'], target: '/portal' }] },
-    'weibo.com': {
-        _name: '微博',
-        '.': [
-            {
-                title: '博主',
-                docs: 'https://docs.rsshub.app/social-media.html#wei-bo',
-                source: ['/u/:id', '/:id'],
-                target: (params, url, document) => {
-                    let uid = document?.documentElement.innerHTML.match(/\$CONFIG\['oid']='(\d+)'/)?.[1];
-                    if (!uid && !isNaN(params.id)) {
-                        uid = params.id;
-                    }
-                    return uid ? `/weibo/user/${uid}` : '';
-                },
-            },
-            { title: '关键词', docs: 'https://docs.rsshub.app/social-media.html#wei-bo' },
-            { title: '超话', docs: 'https://docs.rsshub.app/social-media.html#wei-bo', source: '/p/:id/super_index', target: '/weibo/super_index/:id' },
-        ],
-        s: [{ title: '热搜榜', docs: 'https://docs.rsshub.app/social-media.html#wei-bo', source: '/top/summary', target: '/weibo/search/hot' }],
-    },
-    'weibo.cn': { _name: '微博', m: [{ title: '博主', docs: 'https://docs.rsshub.app/social-media.html#wei-bo', source: ['/u/:uid', '/profile/:uid'], target: '/weibo/user/:uid' }] },
     'github.com': {
         _name: 'GitHub',
         '.': [
@@ -49,11 +28,6 @@
             { title: '用户 Starred Repositories', docs: 'https://docs.rsshub.app/programming.html#github', source: '/:user', target: '/github/starred_repos/:user' },
             { title: '仓库 Contributors', docs: 'https://docs.rsshub.app/programming.html#github', source: ['/:user/:repo/graphs/contributors', '/:user/:repo'], target: '/github/contributors/:user/:repo' },
         ],
-    },
-    'smzdm.com': {
-        _name: '什么值得买',
-        www: [{ title: '排行榜', docs: 'https://docs.rsshub.app/shopping.html#shen-me-zhi-de-mai', source: '/top' }],
-        search: [{ title: '关键词', docs: 'https://docs.rsshub.app/shopping.html#shen-me-zhi-de-mai', source: '/', target: (params, url) => `/smzdm/keyword/${new URL(url).searchParams.get('s')}` }],
     },
     'ximalaya.com': {
         _name: '喜马拉雅',
@@ -97,7 +71,6 @@
     'ishuhui.com': { _name: '鼠绘漫画', www: [{ title: '鼠绘漫画', docs: 'https://docs.rsshub.app/anime.html#shu-hui-man-hua', source: '/comics/anime/:id', target: '/shuhui/comics/:id' }] },
     'www.chicagotribune.com': { _name: 'Chicago Tribune', www: [{ title: 'Chicago Tribune', docs: 'https://docs.rsshub.app/traditional_media.html#chicago-tribune', source: '/' }] },
     'haimaoba.com': { _name: '海猫吧', www: [{ title: '漫画更新', docs: 'https://docs.rsshub.app/anime.html#hai-mao-ba', source: '/catalog/:id', target: '/haimaoba/:id' }] },
-    'copymanga.com': { _name: '拷贝漫画', www: [{ title: '漫画更新', docs: 'https://docs.rsshub.app/anime.html#kao-bei-man-hua', source: '/comic/:id/', target: '/manhuagui/comic/:id/5' }] },
     'pgyer.com': { _name: '蒲公英应用分发', www: [{ title: 'app更新', docs: 'https://docs.rsshub.app/program-update.html#pu-gong-ying-ying-yong-fen-fa', source: '/:app', target: '/pgyer/:app' }] },
     'wineyun.com': { _name: '酒云网', www: [{ title: '最新商品', docs: 'https://docs.rsshub.app/other.html#jiu-yun-wang', source: ['/:category'], target: '/wineyun/:category' }] },
     'epicgames.com': { _name: 'Epic Games', www: [{ title: '每周免费游戏', docs: 'https://docs.rsshub.app/game.html#epicgames-freegame', source: '/store/zh-CN/free-games', target: '/epicgames/freegames' }] },
@@ -308,24 +281,6 @@
             { title: '教务处实践科学科通知', docs: 'https://docs.rsshub.app/university.html#yun-nan-da-xue', source: '/*', target: '/jwc/4' },
         ],
         grs: [{ title: '研究生院通知', docs: 'https://docs.rsshub.app/university.html#yun-nan-da-xue', source: '/*', target: '' }],
-    },
-    'kuaidi100.com': {
-        _name: '快递100',
-        '.': [
-            {
-                title: '快递追踪',
-                docs: 'https://docs.rsshub.app/other.html#kuai-di-100',
-                source: '/',
-                target: (params, url, document) => {
-                    const postid = document && document.querySelector('#postid').value;
-                    const com = document && document.querySelector('#selectComBtn').childNodes[1].attributes[1].value;
-                    if (com && com !== 'default' && postid) {
-                        return `/kuaidi100/track/${com}/${postid}`;
-                    }
-                },
-            },
-            { title: '支持的快递公司列表', docs: 'https://docs.rsshub.app/other.html#kuai-di-100', source: '/', target: '/kuaidi100/company' },
-        ],
     },
     'japanpost.jp': {
         _name: '日本郵便',
@@ -728,20 +683,6 @@
     },
     'huya.com': { _name: '虎牙直播', '.': [{ title: '直播间开播', docs: 'https://docs.rsshub.app/live.html#hu-ya-zhi-bo-zhi-bo-jian-kai-bo', source: '/:id', target: '/huya/live/:id' }] },
     'craigslist.org': { _name: 'Craigslist', '.': [{ title: '商品搜索列表', docs: 'https://docs.rsshub.app/shopping.html#craigslist' }] },
-    'saraba1st.com': {
-        _name: 'Saraba1st',
-        bbs: [
-            {
-                title: '帖子',
-                docs: 'https://docs.rsshub.app/bbs.html#saraba1st',
-                source: '/2b/:id',
-                target: (params) => {
-                    const id = params.id.includes('thread') ? params.id.split('-')[1] : '';
-                    return id ? `/saraba1st/thread/${id}` : '';
-                },
-            },
-        ],
-    },
     'scboy.com': {
         _name: 'scboy 论坛',
         www: [
